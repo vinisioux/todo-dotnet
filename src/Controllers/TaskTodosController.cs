@@ -10,7 +10,7 @@ using Todo.Models;
 namespace Todo.Controllers
 {
   [Route("v1/tasks")]
-  public class TasksController : Controller
+  public class TaskTodosController : Controller
   {
     [HttpPost]
     [Authorize]
@@ -24,8 +24,6 @@ namespace Todo.Controllers
       var user_id = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
       var user = await context.Users.FirstOrDefaultAsync(u => u.Id.ToString() == user_id);
-
-      user.Password = "";
 
       taskTodo.UserId = user_id;
       taskTodo.User = user;
