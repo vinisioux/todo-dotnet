@@ -10,8 +10,8 @@ using Todo.Data;
 namespace Todo.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20201107231826_AlterConstraintsTaskMigration")]
-    partial class AlterConstraintsTaskMigration
+    [Migration("20201109161905_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace Todo.Migrations
                 .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("Todo.Models.Task", b =>
+            modelBuilder.Entity("Todo.Models.TaskTodo", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,7 +52,7 @@ namespace Todo.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tasks");
+                    b.ToTable("TaskTodos");
                 });
 
             modelBuilder.Entity("Todo.Models.User", b =>
@@ -86,7 +86,7 @@ namespace Todo.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Todo.Models.Task", b =>
+            modelBuilder.Entity("Todo.Models.TaskTodo", b =>
                 {
                     b.HasOne("Todo.Models.User", "User")
                         .WithMany()

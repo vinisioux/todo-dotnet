@@ -43,15 +43,12 @@ namespace Todo.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("text");
-
-                    b.Property<Guid?>("UserId1")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("TaskTodos");
                 });
@@ -91,7 +88,9 @@ namespace Todo.Migrations
                 {
                     b.HasOne("Todo.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
